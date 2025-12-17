@@ -43,7 +43,7 @@
 <div class="box" id="app"></div>
 
 <script>
- let memory = [];
+ let memory = JSON.parse(localStorage.getItem("ndn_memory")) || [];
 
   document.getElementById("app").innerHTML = `
     <h1>NDN AI Login</h1>
@@ -88,11 +88,13 @@ function send() {
   if (!text) return;
 
   chat.innerHTML += `<div class="user">You: ${text}</div>`;
-  memory.push("User: " + text);
+  memory.push("User: " + text);localStorage.setItem("ndn_memory", JSON.stringify(memory));
+
   input.value = "";
 
   let reply = aiReply(text);
-  memory.push("NDN AI: " + reply);
+  memory.push("NDN AI: " + reply);localStorage.setItem("ndn_memory", JSON.stringify(memory));
+
 
   chat.innerHTML += `<div class="ai">NDN AI: ${reply}</div>`;
   chat.scrollTop = chat.scrollHeight;
@@ -160,12 +162,17 @@ function aiReply(t) {
 
   return smartReplies[Math.floor(Math.random() * smartReplies.length)];
 }
-
+function logout() {
+  localStorage.removeItem("ndn_login");
+  localStorage.removeItem("ndn_memory");
+  location.reload();
 }
+
 </script>
 
 </body>
 </html>
+
 
 
 
