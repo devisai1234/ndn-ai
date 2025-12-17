@@ -119,11 +119,54 @@ function send() {
 }
 
 function aiReply(t) {
-  t = t.toLowerCase();if (t.includes("remember")) {
-  if (memory.length === 0) {
-    return "I don’t remember anything yet.";
+  t = t.toLowerCase();
+
+  if (t.includes("remember")) {
+    if (memory.length === 0) {
+      return "I don’t remember anything yet.";
+    }
+    return "Here is what I remember:<br>" + memory.slice(-6).join("<br>");
   }
-  return "Here is what I remember:<br>" + memory.slice(-6).join("<br>");
+
+  if (t.includes("hello") || t.includes("hi")) {
+    return "Hello 👋 How can I help you today?";
+  }
+
+  if (t.includes("how are you")) {
+    return "I am doing great! Thanks for asking 😊";
+  }
+
+  if (t.includes("who are you")) {
+    return "I am NDN AI, a smart assistant created to help people.";
+  }
+
+  if (t.includes("learn") || t.includes("study")) {
+    return "Learning step by step every day is the best way to grow.";
+  }
+
+  if (t.includes("code") || t.includes("programming")) {
+    return "Programming is about solving problems. Practice makes you better.";
+  }
+
+  if (t.includes("sad") || t.includes("stress") || t.includes("life")) {
+    return "Life can be hard sometimes. You are not alone 💙";
+  }
+
+  if (t.includes("time") || t.includes("date")) {
+    const now = new Date();
+    return "Today is " + now.toDateString() +
+           " and the time is " + now.toLocaleTimeString();
+  }
+
+  const smartReplies = [
+    "That’s interesting. Tell me more.",
+    "I’m thinking about that 🤔",
+    "Can you explain a bit more?",
+    "That sounds important.",
+    "I want to understand better."
+  ];
+
+  return smartReplies[Math.floor(Math.random() * smartReplies.length)];
 }
 
 
@@ -172,6 +215,7 @@ function logout() {
 
 </body>
 </html>
+
 
 
 
