@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NDN AI</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #0f172a;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .box {
+      width: 420px;
+      background: #020617;
+      border-radius: 12px;
+      padding: 15px;
+    }
+    h1 { text-align: center; color: #38bdf8; }
+    #chat {
+      height: 250px;
+      overflow-y: auto;
+      border: 1px solid #1e293b;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    input, button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: none;
+    }
+    button { background: #38bdf8; cursor: pointer; }
+    .user { color: #22c55e; }
+    .ai { color: #38bdf8; }
+  </style>
+</head>
+<body>
+
+<div class="box" id="app"></div>
+
+<script>
+function showLogin() {
+  document.getElementById("app").innerHTML = `
+    <h1>NDN AI Login</h1>
+    <input id="user" placeholder="Username">
+    <input id="pass" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+  `;
+}
+
+function showApp() {
+  document.getElementById("app").innerHTML = `
+    <h1>NDN AI</h1>
+    <div id="chat"></div>
+    <input id="input" placeholder="Ask NDN AI...">
+    <button onclick="send()">Send</button>
+    <button onclick="logout()">Logout</button>
+  `;
+}
+
+if (localStorage.getItem("ndn_login") === "yes") {
+  showApp();
+} else {
+  showLogin();
+}
+
+function login() {
+  let u = document.getElementById("user").value;
+  let p = document.getElementById("pass").value;
+
+  if (u === "admin" && p === "1234") {
+    localStorage.setItem("ndn_login", "yes");
+    showApp();
+  } else {
+    alert("Wrong username or password");
+  }
+}
+
+function logout() {
+  localStorage.removeItem("ndn_login");
+  location.reload();
+}
+
+function send() {
+  let input = document.getElementById("input");
+  let chat = document.getElementById("chat");
+  let text = input.value;
+  if (!text) return;
+
+  chat.innerHTML += `<div class="user">You: ${text}</div>`;
+  input.value = "";
+
+  let reply = aiReply(text);
+  chat.innerHTML += `<div class="ai">NDN AI: ${reply}</div>`;
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function aiReply(t) {
+  t = t.toLowerCase();
+  if (t.includes("hello")) return "Hello, I am NDN AI.";
+  if (t.includes("who are you")) return "I am NDN AI, created by you.";
+  if (t.includes("help")) return "I can chat and answer basic questions.";
+  return "I am still learning.";
+}
+</script>
+
+</body>
+</html>
