@@ -112,12 +112,48 @@ function send() {
 }
 
 function aiReply(t) {
-  t = t.toLowerCase();
+  t = t.toLowerCase().trim();
 
-  // GREETINGS (FIRST RULE - SAFE)
+  // ✅ GREETING (FIRST – VERY IMPORTANT)
   if (t.match(/\b(hello|hi|hey)\b/)) {
     return "Hello 👋 How can I help you today?";
   }
+
+  // ✅ MEMORY
+  if (t.includes("remember")) {
+    if (memory.length === 0) {
+      return "I don’t remember anything yet.";
+    }
+    return "Here is what I remember:<br>" + memory.slice(-6).join("<br>");
+  }
+
+  // ✅ ABOUT AI
+  if (t.includes("who are you") || t.includes("what are you")) {
+    return "I am NDN AI, a smart assistant created to help people.";
+  }
+
+  // ✅ HELP
+  if (t.includes("help")) {
+    return "You can ask me about AI, learning, programming, or life advice.";
+  }
+
+  // ✅ HOW ARE YOU
+  if (t.includes("how are you")) {
+    return "I am doing great! Thanks for asking 😊";
+  }
+
+  // ✅ DEFAULT SMART ANSWERS
+  const smartReplies = [
+    "That is interesting. Tell me more.",
+    "I am thinking about that 🤔",
+    "Can you explain a little more?",
+    "I am still learning, but I want to help.",
+    "That sounds important."
+  ];
+
+  return smartReplies[Math.floor(Math.random() * smartReplies.length)];
+}
+
 
   // MEMORY
   if (t.includes("remember")) {
@@ -255,6 +291,7 @@ if (t.includes("good night")) {
 
 </body>
 </html>
+
 
 
 
