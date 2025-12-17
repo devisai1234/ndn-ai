@@ -193,6 +193,32 @@ function aiReply(t) {
 
   if (t.includes("bye"))
     return "Goodbye 👋 Come back anytime!";
+// BASIC KNOWLEDGE
+if (t.includes("what is ai")) {
+  return "AI means Artificial Intelligence. It helps computers think and learn like humans.";
+}
+
+if (t.includes("what is ndn ai")) {
+  return "NDN AI is a smart assistant created to help people with information and guidance.";
+}
+
+if (t.includes("who created you")) {
+  return "I was created by my developer to help people learn and grow.";
+}
+
+// HELP
+if (t.includes("help")) {
+  return "You can ask me about AI, learning, programming, life advice, or time and date.";
+}
+
+// GREETING EXTENDED
+if (t.includes("good morning")) {
+  return "Good morning ☀️ I hope you have a great day!";
+}
+
+if (t.includes("good night")) {
+  return "Good night 🌙 Sleep well and take care.";
+}
 
   // smart default answers
   const smartReplies = [
@@ -215,6 +241,7 @@ function logout() {
 
 </body>
 </html>
+
 
 
 
