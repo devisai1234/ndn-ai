@@ -101,13 +101,44 @@ function send() {
 
 function aiReply(t) {
   t = t.toLowerCase();
-  if (t.includes("hello")) return "Hello, I am NDN AI.";
-  if (t.includes("who are you")) return "I am NDN AI, created by you.";
-  if (t.includes("help")) return "I can chat and answer basic questions.";
-  return "I am still learning.";
+
+  if (t.includes("hello") || t.includes("hi"))
+    return "Hello 👋 How can I help you today?";
+
+  if (t.includes("how are you"))
+    return "I am doing great! Thanks for asking 😊";
+
+  if (t.includes("who are you"))
+    return "I am NDN AI, a smart assistant created to help people.";
+
+  if (t.includes("what can you do"))
+    return "I can chat, answer questions, and help you think.";
+
+  if (t.includes("creator") || t.includes("made you"))
+    return "NDN AI was created by a developer who is learning step by step.";
+
+  if (t.includes("time"))
+    return "I don’t know the exact time yet, but I can learn more soon.";
+
+  if (t.includes("bye"))
+    return "Goodbye 👋 Come back anytime!";
+
+  // smart default answers
+  const smartReplies = [
+    "That is interesting. Tell me more.",
+    "I am thinking about that 🤔",
+    "Can you explain a little more?",
+    "I am still learning, but I want to help.",
+    "That sounds important."
+  ];
+
+  return smartReplies[Math.floor(Math.random() * smartReplies.length)];
+}
+
 }
 </script>
 
 </body>
 </html>
+
 
