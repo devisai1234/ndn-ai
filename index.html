@@ -120,9 +120,11 @@ function send() {
 
 function aiReply(t) {
   t = t.toLowerCase();// GREETINGS (FIRST RULE)
-if (t === "hello" || t === "hi" || t === "hey") {
+// GREETINGS (SMART)
+if (t.includes("hello") || t.includes("hi") || t.includes("hey")) {
   return "Hello 👋 How can I help you today?";
 }
+
 
 
   if (t.includes("remember")) {
@@ -245,6 +247,7 @@ function logout() {
 
 </body>
 </html>
+
 
 
 
