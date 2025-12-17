@@ -117,7 +117,13 @@ function send() {
 }
 
 function aiReply(t) {
-  t = t.toLowerCase();
+  t = t.toLowerCase();if (t.includes("remember")) {
+  if (memory.length === 0) {
+    return "I don’t remember anything yet.";
+  }
+  return "Here is what I remember:<br>" + memory.slice(-6).join("<br>");
+}
+
 
   if (t.includes("hello") || t.includes("hi"))
     return "Hello 👋 How can I help you today?";
@@ -160,6 +166,7 @@ function aiReply(t) {
 
 </body>
 </html>
+
 
 
 
