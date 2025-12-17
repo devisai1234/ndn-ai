@@ -119,14 +119,12 @@ function send() {
 }
 
 function aiReply(t) {
-  t = t.toLowerCase();// GREETINGS (FIRST RULE)
-// GREETINGS (SMART)
-if (t.includes("hello") || t.includes("hi") || t.includes("hey")) {
-  return "Hello 👋 How can I help you today?";
-}
+  t = t.toLowerCase();
 
-
-
+// GREETINGS (FIRST RULE - SAFE)
+if (t.match(/\b(hello|hi|hey)\b/)) {
+if (t.match(/\b(hello|hi|hey)\b/))
+ } 
   if (t.includes("remember")) {
     if (memory.length === 0) {
       return "I don’t remember anything yet.";
@@ -247,6 +245,7 @@ function logout() {
 
 </body>
 </html>
+
 
 
 
