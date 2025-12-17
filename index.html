@@ -117,8 +117,11 @@ function aiReply(t) {
   if (t.includes("creator") || t.includes("made you"))
     return "NDN AI was created by a developer who is learning step by step.";
 
-  if (t.includes("time"))
-    return "I don’t know the exact time yet, but I can learn more soon.";
+  if (t.includes("time") || t.includes("date")) {
+  const now = new Date();
+  return "Today is " + now.toDateString() + 
+         " and the time is " + now.toLocaleTimeString();
+}
 
   if (t.includes("bye"))
     return "Goodbye 👋 Come back anytime!";
@@ -140,5 +143,6 @@ function aiReply(t) {
 
 </body>
 </html>
+
 
 
