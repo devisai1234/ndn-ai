@@ -18,7 +18,9 @@
       border-radius: 12px;
       padding: 15px;
     }
-    h1 { text-align: center; color: #38bdf8; }
+    h1 { text-align: center;
+        color: #38bdf8;
+    }
     #chat {
       height: 250px;
       overflow-y: auto;
@@ -45,6 +47,14 @@
 <script>
  let memory = JSON.parse(localStorage.getItem("ndn_memory")) || [];
 
+  document.getElementById("app").innerHTML = `
+    <h1>NDN AI Login</h1>
+    <input id="user" placeholder="Username">
+    <input id="pass" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+  `;
+}
+function showLogin() {
   document.getElementById("app").innerHTML = `
     <h1>NDN AI Login</h1>
     <input id="user" placeholder="Username">
@@ -266,6 +276,7 @@ function logout() {
 
 </body>
 </html>
+
 
 
 
