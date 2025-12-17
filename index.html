@@ -112,11 +112,30 @@ function send() {
 }
 
 function aiReply(t) {
-  t = t.toLowerCase().trim();
+  t = t.toLowerCase().trim();  // SIMPLE ENGLISH DICTIONARY
+  const dictionary = {
+    "hello": "Hello means a greeting used when meeting someone.",
+    "ai": "AI means Artificial Intelligence. It is a computer that can think and learn.",
+    "learn": "Learn means to get knowledge or skill by studying or experience.",
+    "computer": "A computer is an electronic machine that processes information.",
+    "language": "Language is a system of communication using words.",
+    "english": "English is an international language spoken in many countries.",
+    "word": "A word is a unit of language with meaning."
+  };
+
 
   // ✅ GREETING (FIRST – VERY IMPORTANT)
   if (t.match(/\b(hello|hi|hey)\b/)) {
     return "Hello 👋 How can I help you today?";
+  }
+  // DICTIONARY LOOKUP
+  if (t.startsWith("define ")) {
+    let word = t.replace("define ", "").trim();
+    if (dictionary[word]) {
+      return dictionary[word];
+    } else {
+      return "Sorry, I don't know that word yet.";
+    }
   }
 
   // ✅ MEMORY
@@ -291,6 +310,7 @@ if (t.includes("good night")) {
 
 </body>
 </html>
+
 
 
 
