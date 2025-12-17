@@ -81,7 +81,23 @@ function login() {
   }
 }
 
-function logout() {
+function send() {
+  let input = document.getElementById("input");
+  let chat = document.getElementById("chat");
+  let text = input.value;
+  if (!text) return;
+
+  chat.innerHTML += `<div class="user">You: ${text}</div>`;
+  memory.push("User: " + text);
+  input.value = "";
+
+  let reply = aiReply(text);
+  memory.push("NDN AI: " + reply);
+
+  chat.innerHTML += `<div class="ai">NDN AI: ${reply}</div>`;
+  chat.scrollTop = chat.scrollHeight;
+}
+
   localStorage.removeItem("ndn_login");
   location.reload();
 }
@@ -144,6 +160,7 @@ function aiReply(t) {
 
 </body>
 </html>
+
 
 
 
